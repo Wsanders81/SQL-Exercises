@@ -91,6 +91,8 @@ def delete_user(user_id):
     db.session.commit()
     return redirect('/users')
 
+#******* Post Routes ********
+
 @app.route('/posts/<post_id>')
 def show_posts(post_id): 
     """Show post / Show buttons to edit and delete a post"""
