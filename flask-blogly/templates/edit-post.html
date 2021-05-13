@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Edit Post titled "{{post.title}}"</h1>
+<h1 class="display-2">Edit Post titled: "{{post.title}}"</h1>
+<hr>
 <form method="POST">
   <div class="form-group">
     <label for="title">Title</label>
@@ -11,16 +12,22 @@
       value="{{post.title}}"
     />
   </div>
-  <div class="form-group">
+  <div class="form-group mb-2">
     <label for="content">Content</label>
     <textarea class="form-control" id="content" name="content">
     {{ post.content }}</textarea>
   </div>
-  <button type="submit" class="btn btn-success">Edit</button>
+  {% for tag in tags %}
+<div class="form-check ">
+    <input type="checkbox" class="form-check-input" value="{{tag.id}}" id="tag_{{tag_id}}" name="tags" {% if tag in post.tags %} checked {% endif %}>
+    <label for="defaultCheck1" class="form-check-label">{{tag.name}}</label>
+</div>
+{% endfor %}
+  <button type="submit" class="btn btn-success mt-4">Edit</button>
   <a
     href="/users/{{post.user.id}}"
     type="submit"
-    class="btn btn-outline-primary"
+    class="btn btn-outline-primary mt-4"
     >Cancel</a
   >
 </form>
